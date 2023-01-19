@@ -1,11 +1,10 @@
 import { Check } from 'phosphor-react';
+import { LabelHabitForm } from '../LabelHabitForm/LabelHabitForm';
 
 export function NewHabitForm() {
   return (
     <form className="w-full flex flex-col mt-6">
-      <label htmlFor="titleHabit" className="font-semibold leading-tight">
-        Qual seu comprometimento
-      </label>
+      <LabelHabitForm text="Qual seu comprometimento?" htmlFor="titleHabit" />
       <input
         type="text"
         id="titleHabit"
@@ -13,11 +12,7 @@ export function NewHabitForm() {
         className="p-4 rounded-lg mt-3 bg-zinc-800 text-white placeholder:text-zinc-400"
         autoFocus
       />
-
-      <label htmlFor="" className="font-semibold leading-tight mt-4">
-        Qual a recorrência?
-      </label>
-
+      <LabelHabitForm text="Qual a recorrência?" htmlFor="" marginTop={1} />
       <button
         type="submit"
         className="mt-6 rounded-lg p-4 flex items-center justify-center gap-3 font-semibold bg-green-600 hover:bg-green-400"
