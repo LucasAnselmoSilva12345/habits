@@ -1,5 +1,5 @@
 import { generateDatesFromYearBeginning } from '../../utils/generate-dates-from-year-beginning';
-import { HabitDay } from '../HabitDay.tsx/HabitDay';
+import { HabitDay } from '../HabitDay/HabitDay';
 
 const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
