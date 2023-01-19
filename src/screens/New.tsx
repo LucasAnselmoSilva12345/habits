@@ -51,7 +51,7 @@ export function New() {
         </Text>
 
         <TextInput
-          className="h-12 pl-4 rounded-lg mt-3 bg-zinc-800 text-white focus:border-2 focus:border-green-500"
+          className="h-12 pl-4 rounded-lg mt-3 bg-zinc-900 text-white border-2 border-zinc-800 focus:border-green-500"
           placeholder="Ir na academia, tomar 30m de sol, etc..."
           placeholderTextColor={colors.zinc[400]}
         />
