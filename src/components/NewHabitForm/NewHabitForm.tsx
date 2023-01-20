@@ -34,7 +34,7 @@ export function NewHabitForm() {
     setWeekDays([]);
 
     if (teste) {
-      return alert('funcionou');
+      return alert('Novo hábito criado');
     }
   }
 
