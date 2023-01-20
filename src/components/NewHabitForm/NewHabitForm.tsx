@@ -25,7 +25,7 @@ export function NewHabitForm() {
       return;
     }
 
-    await api.post('/habits', {
+    const teste = await api.post('/habits', {
       title,
       weekDays,
     });
@@ -33,7 +33,9 @@ export function NewHabitForm() {
     setTitle('');
     setWeekDays([]);
 
-    alert('Hábito criado com sucesso');
+    if (teste) {
+      return alert('funcionou');
+    }
   }
 
   function handleToggleWeekDay(weekDay: number) {
