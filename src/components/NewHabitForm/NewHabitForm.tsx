@@ -19,8 +19,6 @@ export function NewHabitForm() {
 
   function createNewHabit(event: FormEvent) {
     event.preventDefault();
-
-    console.log(title, weekDays);
   }
 
   function handleToggleWeekDay(weekDay: number) {
