@@ -3,6 +3,7 @@ import * as Checkbox from '@radix-ui/react-checkbox';
 import clsx from 'clsx';
 import { ProgressBar } from '../ProgressBar/ProgressBar';
 import { Check } from 'phosphor-react';
+import dayjs from 'dayjs';
 
 interface HabitDayProps {
   date: Date;
@@ -10,9 +11,12 @@ interface HabitDayProps {
   amount?: number;
 }
 
-export function HabitDay({ completed = 0, amount = 0 }: HabitDayProps) {
+export function HabitDay({ completed = 0, amount = 0, date }: HabitDayProps) {
   const completedPercentage =
-    amount >= 0 ? Math.round((completed / amount) * 100) : 0;
+    amount > 0 ? Math.round((completed / amount) * 100) : 0;
+
+  const dateAndMonth = dayjs(date).format('DD/MM');
+  const dayOfWeek = dayjs(date).format('dddd');
 
   return (
     <Popover.Root>
@@ -22,7 +26,7 @@ export function HabitDay({ completed = 0, amount = 0 }: HabitDayProps) {
           {
             'bg-zinc-900 border-zinc-800': completedPercentage === 0,
             'bg-violet-900 border-violet-700':
-              completedPercentage >= 0 && completedPercentage < 20,
+              completedPercentage > 0 && completedPercentage < 20,
             'bg-violet-800 border-violet-600':
               completedPercentage >= 20 && completedPercentage < 40,
             'bg-violet-700 border-violet-500':
@@ -36,9 +40,9 @@ export function HabitDay({ completed = 0, amount = 0 }: HabitDayProps) {
 
       <Popover.Portal>
         <Popover.Content className="min-w-[320px] p-6 rounded-2xl bg-zinc-900 flex flex-col">
-          <span className="font-semibold text-zinc-400">terça-feira</span>
+          <span className="font-semibold text-zinc-400">{dayOfWeek}</span>
           <span className="mt-1 font-extrabold leading-tight text-3xl">
-            19/01
+            {dateAndMonth}
           </span>
           <ProgressBar progress={completedPercentage} />
 
