@@ -1,8 +1,9 @@
 import { FormEvent, useState } from 'react';
-import { api } from '../../lib/axios';
+import { LabelHabitForm } from '../LabelHabitForm/LabelHabitForm';
 import * as Checkbox from '@radix-ui/react-checkbox';
 import { Check } from 'phosphor-react';
-import { LabelHabitForm } from '../LabelHabitForm/LabelHabitForm';
+import { api } from '../../lib/axios';
+import { ButtonCreateHabit } from '../ButtonCreateHabit/ButtonCreateHabit';
 
 const availableWeekDays = [
   'Domingo',
@@ -21,21 +22,17 @@ export function NewHabitForm() {
   async function createNewHabit(event: FormEvent) {
     event.preventDefault();
 
-    if (!title || weekDays.length === 0) {
+    if (!title.trim() || weekDays.length === 0) {
       return;
     }
 
-    const teste = await api.post('/habits', {
+    await api.post('/habits', {
       title,
       weekDays,
     });
 
     setTitle('');
     setWeekDays([]);
-
-    if (teste) {
-      return alert('Novo hábito criado');
-    }
   }
 
   function handleToggleWeekDay(weekDay: number) {
@@ -84,14 +81,7 @@ export function NewHabitForm() {
           </Checkbox.Root>
         ))}
       </div>
-
-      <button
-        type="submit"
-        className="mt-6 rounded-lg p-4 flex items-center justify-center gap-3 font-semibold bg-green-600 hover:bg-green-400 transition-colors focus:outline-none focus:ring-2 focus:ring-green-800 focus:ring-offset-2 focus:ring-offset-zinc-900"
-      >
-        <Check size={20} weight="bold" />
-        Confirmar
-      </button>
+      <ButtonCreateHabit />
     </form>
   );
 }
