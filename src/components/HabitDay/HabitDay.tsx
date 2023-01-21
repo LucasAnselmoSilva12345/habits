@@ -32,7 +32,7 @@ export function HabitDay({
     <Popover.Root>
       <Popover.Trigger
         className={clsx(
-          'w-10 h-10 bg-zinc-900 border-2 border-zinc-800 rounded-lg cursor-pointer',
+          'w-10 h-10 bg-zinc-900 border-2 border-zinc-800 rounded-lg cursor-pointer transition-colors focus:outline-none focus:ring-2 focus:ring-violet-800 focus:ring-offset-2 focus:ring-offset-bgBlack',
           {
             'bg-zinc-900 border-zinc-800': completedPercentage === 0,
             'bg-violet-900 border-violet-700':
