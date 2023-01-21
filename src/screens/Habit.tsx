@@ -5,11 +5,13 @@ import { useRoute } from '@react-navigation/native';
 import dayjs from 'dayjs';
 import { api } from '../lib/axios';
 import { generateProgressPercentage } from '../utils/generate-progress-percentage';
+import clsx from 'clsx';
 
 import { BackButton } from '../components/BackButton';
 import { ProgressBar } from '../components/ProgressBar';
 import { Checkbox } from '../components/Checkbox';
 import { Loading } from '../components/Loading';
+import { HabitsEmpty } from '../components/HabitsEmpty';
 
 interface Params {
   date: string;
@@ -31,7 +33,8 @@ export function Habit() {
   const route = useRoute();
   const { date } = route.params as Params;
 
-  const parsedDate = dayjs();
+  const parsedDate = dayjs(date);
+  const isDateInPast = parsedDate.endOf('day').isBefore(new Date());
   const dayOfWeek = parsedDate.format('dddd');
   const dayAndMonth = parsedDate.format('DD/MM');
 
@@ -101,17 +104,31 @@ export function Habit() {
 
         <ProgressBar progress={habitsProgress} />
 
-        <View className="mt-6">
-          {dayInfo?.possibleHabits &&
+        <View
+          className={clsx('mt-6', {
+            ['opacity-50']: isDateInPast,
+          })}
+        >
+          {dayInfo?.possibleHabits ? (
             dayInfo?.possibleHabits.map(({ id, title }) => (
               <Checkbox
                 key={id}
                 title={title}
                 checked={completedHabits.includes(id)}
+                disabled={isDateInPast}
                 onPress={() => handleToggleHabit(id)}
               />
-            ))}
+            ))
+          ) : (
+            <HabitsEmpty />
+          )}
         </View>
+
+        {isDateInPast && (
+          <Text className="text-white mt-10 text-center">
+            Você não pode editar hábitos de datas passadas.
+          </Text>
+        )}
       </ScrollView>
     </View>
   );
