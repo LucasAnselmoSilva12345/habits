@@ -60,7 +60,7 @@ export function HabitList({ date, onCompletedChange }: HabitListProps) {
   const isDateInPast = dayjs(date).endOf('day').isBefore(new Date());
 
   return (
-    <div className="mt-6 flex flex-col gap-3">
+    <div className="bg-zinc-900 mt-6 grid grid-cols-3 gap-3">
       {habitsInfo?.possibleHabits.map(({ id, title }) => {
         return (
           <Checkbox.Root

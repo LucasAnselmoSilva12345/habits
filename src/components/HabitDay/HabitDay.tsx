@@ -49,11 +49,13 @@ export function HabitDay({
       />
 
       <Popover.Portal>
-        <Popover.Content className="min-w-[320px] p-6 rounded-2xl bg-zinc-900 flex flex-col">
-          <span className="font-semibold text-zinc-400">{dayOfWeek}</span>
-          <span className="mt-1 font-extrabold leading-tight text-3xl">
-            {dateAndMonth}
-          </span>
+        <Popover.Content className="min-w-[400px] p-6 rounded-2xl bg-zinc-900 flex flex-col">
+          <div className="flex items-end justify-between">
+            <span className="mt-1 font-extrabold leading-tight text-3xl">
+              {dateAndMonth}
+            </span>
+            <span className="font-semibold text-zinc-400">{dayOfWeek}</span>
+          </div>
           <ProgressBar progress={completedPercentage} />
 
           <HabitList date={date} onCompletedChange={handleCompletedChange} />
